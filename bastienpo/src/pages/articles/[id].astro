@@ -1,0 +1,54 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import Hairline from "../../components/Hairline.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import Layout from "../../layouts/Layout.astro";
+import { formatDate, shellClass } from "../../data/site";
+
+export async function getStaticPaths() {
+	const articles = await getCollection("articles");
+	return articles.map((article) => ({
+		params: { id: article.id },
+		props: { article },
+	}));
+}
+
+interface Props {
+	article: CollectionEntry<"articles">;
+}
+
+const { article } = Astro.props;
+---
+
+<Layout title={article.data.title} description={article.data.description}>
+	<SiteHeader />
+	<main id="main" class:list={[shellClass, "py-16"]}>
+		<p>
+			<a
+				href="/#articles"
+				class="text-sm leading-5 text-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground"
+			>
+				← Articles
+			</a>
+		</p>
+		<header class="mt-10 flex flex-col gap-4">
+			<p class="text-sm leading-5 text-muted">
+				<time datetime={article.data.pubDate.toISOString()}>
+					{formatDate(article.data.pubDate)}
+				</time>
+				{" "}
+				{article.data.tags.map((tag) => `#${tag}`).join(" ")}
+			</p>
+			<h1 class="text-3xl leading-9 font-semibold text-foreground">
+				{article.data.title}
+			</h1>
+			<p class="text-base leading-6 text-muted">{article.data.description}</p>
+		</header>
+		<p class="mt-12 text-sm leading-5 text-muted">
+			The article layout is coming later.
+		</p>
+	</main>
+	<Hairline />
+	<SiteFooter />
+</Layout>

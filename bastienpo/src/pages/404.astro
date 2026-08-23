@@ -1,0 +1,27 @@
+---
+import Hairline from "../components/Hairline.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import Layout from "../layouts/Layout.astro";
+import { shellClass } from "../data/site";
+---
+
+<Layout title="Not found" description="This page does not exist.">
+	<SiteHeader />
+	<main id="main" class:list={[shellClass, "py-16"]}>
+		<h1 class="text-3xl leading-9 font-semibold">Page not found</h1>
+		<p class="mt-4 text-base leading-6 text-muted">
+			That URL does not match anything on this site.
+		</p>
+		<p class="mt-8">
+			<a
+				href="/"
+				class="text-base leading-6 text-foreground underline decoration-border underline-offset-4 hover:decoration-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground"
+			>
+				Back to home
+			</a>
+		</p>
+	</main>
+	<Hairline />
+	<SiteFooter />
+</Layout>

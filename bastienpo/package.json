@@ -13,14 +13,18 @@
     "lint:fix": "oxlint --fix"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.10",
     "@astrojs/mdx": "^7.0.7",
     "@astrojs/sitemap": "^3.7.3",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.2.4",
-    "daisyui": "^5.7.20",
-    "tailwindcss": "^4.3.3"
+    "sharp": "^0.35.3",
+    "stream-replace-string": "2.0.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^7.0.2"
   },
   "devDependencies": {
+    "daisyui": "^5.7.20",
     "oxfmt": "^0.64.0",
     "oxlint": "^1.79.0"
   },

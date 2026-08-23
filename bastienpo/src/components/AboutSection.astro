@@ -1,0 +1,42 @@
+---
+import { Picture } from "astro:assets";
+import rocket from "../assets/about-rocket.png";
+import { shellClass, site } from "../data/site";
+import SectionLabel from "./SectionLabel.astro";
+---
+
+<section
+    aria-labelledby="about"
+    class:list={[shellClass, "flex flex-col gap-12 py-16"]}
+>
+    <SectionLabel id="about">About</SectionLabel>
+    <div class="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-12">
+        <Picture
+            src={rocket}
+            loading="eager"
+            alt="Dithered illustration of a rocket launching."
+            formats={["avif", "webp"]}
+            widths={[326, 400, 800]}
+            sizes="(min-width: 1024px) 400px, min(800px, calc(100vw - 64px))"
+            width={800}
+            height={560}
+            class="h-50 w-full rounded-md bg-foreground object-cover lg:h-70 lg:w-100 lg:shrink-0"
+        />
+        <div class="flex min-w-0 flex-1 flex-col gap-4">
+            <h3 class="text-2xl leading-8 font-semibold text-foreground">
+                {site.author}
+            </h3>
+            <p class="text-base leading-6 text-muted">{site.description}</p>
+            <p class="text-sm leading-5 text-muted">{site.location}</p>
+            <ul class="mt-2 flex flex-wrap items-center gap-2">
+                {
+                    site.socials.map((social) => (
+                        <button class="btn btn-outline btn-primary rounded-md">
+                            {social.label}
+                        </button>
+                    ))
+                }
+            </ul>
+        </div>
+    </div>
+</section>

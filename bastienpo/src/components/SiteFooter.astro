@@ -1,0 +1,40 @@
+---
+import { shellClass, site } from "../data/site";
+
+const linkClass =
+	"text-sm leading-5 text-muted transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground";
+---
+
+<footer>
+	<div class={shellClass} aria-hidden="true">
+		<div class="h-px bg-border"></div>
+	</div>
+	<div
+		class:list={[
+			shellClass,
+			"flex flex-col gap-4 py-12 lg:flex-row lg:items-center lg:justify-between lg:py-16",
+		]}
+	>
+		<div class="flex items-center justify-between gap-4 lg:contents">
+			<p class="order-1 text-sm leading-5 text-muted">
+				© {site.copyrightYear} {site.name}
+			</p>
+			<a class:list={[linkClass, "order-3"]} href={`mailto:${site.email}`}>{site.email}</a>
+		</div>
+		<nav aria-label="Social" class="order-2 flex items-center gap-6">
+			{
+				site.socials.map((social) => (
+					<a
+						class={linkClass}
+						href={social.href}
+						rel="me noopener noreferrer"
+						target="_blank"
+					>
+						{social.label}
+						<span class="sr-only"> (opens in a new tab)</span>
+					</a>
+				))
+			}
+		</nav>
+	</div>
+</footer>

@@ -1,0 +1,17 @@
+---
+import { getCollection } from "astro:content";
+import { shellClass } from "../data/site";
+import ArticleCard from "./ArticleCard.astro";
+import SectionLabel from "./SectionLabel.astro";
+
+const articles = (await getCollection("articles")).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<section aria-labelledby="articles" class:list={[shellClass, "flex flex-col gap-12 py-16"]}>
+	<SectionLabel id="articles">Articles</SectionLabel>
+	<div class="flex flex-col gap-12">
+		{articles.map((article) => <ArticleCard article={article} />)}
+	</div>
+</section>
