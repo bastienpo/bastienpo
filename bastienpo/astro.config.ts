@@ -1,3 +1,9 @@
 import { defineConfig } from "astro/config";
 
-export default defineConfig({});
+import sitemap from "@astrojs/sitemap";
+
+import mdx from "@astrojs/mdx";
+
+export default defineConfig({
+  integrations: [sitemap(), mdx()]
+});
